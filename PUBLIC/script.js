@@ -3,9 +3,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const loginForm = document.getElementById('loginForm');
     const mensagem = document.getElementById('mensagem');
 
-    // Armazenar usuários em um array (para fins de demonstração)
-    let usuarios = [];
-
     // Função para cadastrar o usuário
     cadastroForm.addEventListener('submit', function (e) {
         e.preventDefault();
@@ -14,19 +11,22 @@ document.addEventListener("DOMContentLoaded", function () {
         const email = document.getElementById('email').value;
         const senha = document.getElementById('senha').value;
 
-        // Verificar se o usuário já existe
-        const usuarioExistente = usuarios.find(usuario => usuario.email === email);
-        if (usuarioExistente) {
-            mensagem.textContent = 'Usuário já cadastrado!';
-            return;
-        }
-
-        // Cadastrar novo usuário (hashing de senha poderia ser feito no backend)
-        const novoUsuario = { nome, email, senha };
-        usuarios.push(novoUsuario);
-
-        mensagem.textContent = 'Usuário cadastrado com sucesso!';
-        cadastroForm.reset();
+        fetch('/cadastrar', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ nome, email, senha }),
+        })
+        .then(response => response.json())
+        .then(data => {
+            mensagem.textContent = data.mensagem;
+            cadastroForm.reset();
+        })
+        .catch(error => {
+            console.error('Erro:', error);
+            mensagem.textContent = 'Erro ao cadastrar usuário';
+        });
     });
 
     // Função para realizar login do usuário
@@ -36,15 +36,21 @@ document.addEventListener("DOMContentLoaded", function () {
         const email = document.getElementById('loginEmail').value;
         const senha = document.getElementById('loginSenha').value;
 
-        // Procurar o usuário no array
-        const usuarioEncontrado = usuarios.find(usuario => usuario.email === email && usuario.senha === senha);
-
-        if (usuarioEncontrado) {
-            mensagem.textContent = `Bem-vindo, ${usuarioEncontrado.nome}!`;
-        } else {
-            mensagem.textContent = 'E-mail ou senha incorretos!';
-        }
-
-        loginForm.reset();
+        fetch('/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ email, senha }),
+        })
+        .then(response => response.json())
+        .then(data => {
+            mensagem.textContent = data.mensagem;
+            loginForm.reset();
+        })
+        .catch(error => {
+            console.error('Erro:', error);
+            mensagem.textContent = 'Erro ao realizar login';
+        });
     });
 });
