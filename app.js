@@ -7,11 +7,11 @@ const port = 3000;
 
 // Conexão com o PostgreSQL
 const pool = new Pool({
-  user: 'postgres',
-  host: 'localhost',
-  database: 'postgres', 
-  password: '246895',
-  port: 5432,
+  user: process.env.DB_USER || 'postgres',
+  host: process.env.DB_HOST || 'localhost',
+  database: process.env.DB_NAME || 'postgres', 
+  password: process.env.DB_PASSWORD,
+  port: process.env.DB_PORT || 5432,
 });
 
 // Middleware para tratar JSON e servir arquivos estáticos
