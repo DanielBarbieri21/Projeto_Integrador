@@ -3,28 +3,136 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistema de Cadastro e Login</title>
+    <meta name="description" content="Sistema profissional de autenticação e gerenciamento de usuários">
+    <meta name="theme-color" content="#2c3e50">
+    <title>Projeto Integrador - Autenticação</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
-        <h1>Cadastro de Usuário</h1>
-        <form id="cadastroForm">
-            <input type="text" id="nome" placeholder="Nome" required>
-            <input type="email" id="email" placeholder="E-mail" required>
-            <input type="password" id="senha" placeholder="Senha" required>
-            <button type="submit">Cadastrar</button>
-        </form>
+        <header class="header">
+            <h1>🔐 Projeto Integrador</h1>
+            <p class="subtitle">Sistema de Autenticação Profissional</p>
+        </header>
 
-        <h1>Login de Usuário</h1>
-        <form id="loginForm">
-            <input type="email" id="loginEmail" placeholder="E-mail" required>
-            <input type="password" id="loginSenha" placeholder="Senha" required>
-            <button type="submit">Login</button>
-        </form>
-        <p id="mensagem"></p>
+        <!-- NAV TABS -->
+        <nav class="tabs">
+            <button class="tab-btn active" data-tab="login">Login</button>
+            <button class="tab-btn" data-tab="cadastro">Cadastro</button>
+            <button class="tab-btn" data-tab="perfil">Meu Perfil</button>
+        </nav>
+
+        <!-- TAB: LOGIN -->
+        <div class="tab-content active" id="login">
+            <form id="loginForm" class="form">
+                <div class="form-group">
+                    <label for="loginEmail">E-mail</label>
+                    <input 
+                        type="email" 
+                        id="loginEmail" 
+                        placeholder="seu@email.com" 
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="loginSenha">Senha</label>
+                    <input 
+                        type="password" 
+                        id="loginSenha" 
+                        placeholder="••••••••" 
+                        required
+                    >
+                </div>
+
+                <button type="submit" class="btn btn-primary">Entrar</button>
+            </form>
+        </div>
+
+        <!-- TAB: CADASTRO -->
+        <div class="tab-content" id="cadastro">
+            <form id="cadastroForm" class="form">
+                <div class="form-group">
+                    <label for="nome">Nome Completo</label>
+                    <input 
+                        type="text" 
+                        id="nome" 
+                        placeholder="João Silva" 
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="email">E-mail</label>
+                    <input 
+                        type="email" 
+                        id="email" 
+                        placeholder="seu@email.com" 
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="senha">Senha</label>
+                    <input 
+                        type="password" 
+                        id="senha" 
+                        placeholder="Min. 8 caracteres" 
+                        required
+                    >
+                    <small class="help-text">Deve conter letras maiúsculas, minúsculas e números</small>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Criar Conta</button>
+            </form>
+        </div>
+
+        <!-- TAB: PERFIL -->
+        <div class="tab-content" id="perfil">
+            <div id="perfilNaoAutenticado" class="info-box">
+                <p>Você precisa estar logado para acessar seu perfil</p>
+            </div>
+            
+            <div id="perfilAutenticado" style="display: none;">
+                <div id="dadosUsuario" class="user-card"></div>
+                
+                <form id="alterarSenhaForm" class="form">
+                    <h3>Alterar Senha</h3>
+                    
+                    <div class="form-group">
+                        <label for="senhaAtual">Senha Atual</label>
+                        <input 
+                            type="password" 
+                            id="senhaAtual" 
+                            placeholder="••••••••" 
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="novaSenha">Nova Senha</label>
+                        <input 
+                            type="password" 
+                            id="novaSenha" 
+                            placeholder="••••••••" 
+                            required
+                        >
+                    </div>
+
+                    <button type="submit" class="btn btn-secondary">Alterar Senha</button>
+                    <button type="button" class="btn btn-danger" id="logoutBtn">Sair</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- MENSAGENS -->
+        <div id="mensagem" class="alert alert-hidden"></div>
     </div>
 
-    <script src="scripts.js"></script>
+    <footer class="footer">
+        <p>&copy; 2026 Projeto Integrador | Desenvolvido por <strong>Daniel Barbieri</strong></p>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
