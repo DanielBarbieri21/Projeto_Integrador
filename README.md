@@ -321,15 +321,21 @@ node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
 4. Push para a branch (`git push origin feature/MinhaFeature`)
 5. Abra um Pull Request
 
-## 📄 Licença
 
-Este projeto está licenciado sob a Licença MIT - veja o arquivo [LICENSE](LICENSE) para detalhes.
 
-## 👤 Autor
+   ---
 
-**Daniel Barbieri**
-- GitHub: [@DanielBarbieri21](https://github.com/DanielBarbieri21)
-- Email: contato@danielbarbieri.com
+🛠️ **Software desenvolvido por Daniel Barbieri**  
+Engenheiro de Software | Full Stack Developer  
+
+Código construído com foco em eficiência, organização, escalabilidade e boas práticas de desenvolvimento.
+
+🌐 GitHub: https://github.com/DanielBarbieri21  
+💼 LinkedIn: https://www.linkedin.com/in/daniel-barbieri-4990462a/
+
+---
+
+
 
 ## 🙏 Agradecimentos
 
